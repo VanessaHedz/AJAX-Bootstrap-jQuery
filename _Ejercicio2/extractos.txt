@@ -1,0 +1,3 @@
+<h2>Este es un encabezado nuevo</h2>
+<p>Con un párrafo nuevo</p>
+<h1 id="h1">Nuevo encabezado</h1>
