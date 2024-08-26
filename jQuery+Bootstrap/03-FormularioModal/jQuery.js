@@ -30,7 +30,7 @@ $(document).ready(function(){
                 $("#formulario-modal").modal('hide');
 
                 $("#btnResultados").click(function(){
-                    alert("correo: "+data.email+"\npass: "+data.password);
+                    Swal.fire("correo: "+data.email+"\npass: "+data.password);
                 });                
 
             },
