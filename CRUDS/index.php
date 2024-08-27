@@ -1,3 +1,11 @@
+<?php
+    require "BaseDatos/baseDatos.php";
+    $con = new baseDatos;
+    $peliculas = $con->getPeliculas();
+    //print_r($peliculas);
+    //exit();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,17 +76,21 @@
                     <th>Acciones</th>
                 </tr>
                 <!-- Fila con botones de acción -->
+                <?php
+                    foreach ($peliculas as $index => $pelicula):                    
+                ?>
+
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th><?=$pelicula->id?></th>
+                    <th><?=$pelicula->titulo?></th>
+                    <th><?=$pelicula->tipo?></th>
+                    <th><?=$pelicula->genero?></th>
+                    <th><?=$pelicula->anio?></th>
+                    <th><?=$pelicula->duracion?></th>
+                    <th><?=$pelicula->episodios?></th>
+                    <th><?=$pelicula->plataforma?></th>
                     <th>
-                        <button class="btn btn-danger" type="button" id="btnDel">
+                        <button class="btn btn-danger" type="button" id="btnDel" onclick="deletePeliculas(<?=$pelicula->id?>)">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                         <button class="btn btn-success" type="button" id="btnEdit">
@@ -86,6 +98,11 @@
                         </button>
                     </th>
                 </tr>
+
+                <?php
+                    endforeach;
+                ?>
+
             </table>
         </div>
     </div>
