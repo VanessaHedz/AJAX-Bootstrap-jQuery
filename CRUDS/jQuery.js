@@ -1,57 +1,69 @@
-$(document).ready(function(){
-    //Borrar elemento
-    /*$("#btnDel").click(function(){
-        $.ajax(function({
+$(document).ready(function () {});
+//Crear una nueva película
+function addPeliculas(data) {
+  //alert("Entra a la función");
+  $.ajax({
+      type: 'post',
+      url: 'add.php',
+      dataType: 'json',
+      data:{
+          titulo: $("#idTitle").val(),
+          tipo: $("#idTipo").val(),
+          genero: $("#idGenero").val(),
+          anio: $("#idYear").val(),
+          plataforma: $("#idPlataforma").val()
+      },
+      success: function(data){
 
-        }));
-        /*Swal.fire({
-            title: "¿Seguro que quieres eliminar el elemento?",
-            showDenyButton: true,
-            confirmButtonText: "Cancelar",
-            denyButtonText: `Eliminar`
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire("Saved!", "", "success");
-            } else if (result.isDenied) {
-              Swal.fire("Changes are not saved", "", "info");
-            }
-          });*/
-    //});
+        if (data.success){
+            alert(data.message);
+            window.location.reload();
+        }else{
+            alert(data.message);
+        }
+          
+      },
+      error: function(){
+          alert("error en el JS");
+      }
+  });
+}
+//addPeliculas(1);
 
- 
+//Agregar nuevo elemento
+$("#btnAdd").click(function () {
+  $("#formulario-modal").modal("show");
 });
 
-    //Agregar nuevo elemento
-    $("#btnAdd").click(function(){
-        $("#formulario-modal").modal('show');
-    });
+//Editar elemento
+$("#btnEdit").click(function () {
+  $("#formulario-modal").modal("show");
+});
 
-    //Editar elemento
-    $("#btnEdit").click(function(){
-        $("#formulario-modal").modal('show');
-    });
+//Cerrar Modal
+$("#btnClose").click(function () {
+    
+    $("#formulario-modal").modal("hide");
+});
 
-    //Cerrar Modal
-    $("#btnClose").click(function(){
-        $("#formulario-modal").modal('hide');
-    });
+$("#btnSend").click(function () {
+  $("#formulario-modal").modal("hide");
+});
 
-    $("#btnSend").click(function(){
-        $("#formulario-modal").modal('hide');
-    });
-
-    function deletePeliculas(id){
-        $.ajax({
-            type: 'post',
-            url: 'delete.php',
-            dataType : 'json',
-            data:{
-                id: id
-            },
-            success: function(data){              
-                alert(data.id);
-            },
-            error: function(){
-                alert("error");
-            }
-    });}
+function deletePeliculas(id) {
+  $.ajax({
+    type: "post",
+    url: "delete.php",
+    dataType: "json",
+    data: {
+      id: id,
+    },
+    success: function (data) {
+      alert(data.id);
+      window.location.reload();
+    },
+    error: function () {
+      alert("error");
+    },
+  });
+}

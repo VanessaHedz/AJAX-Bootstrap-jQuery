@@ -2,6 +2,7 @@
     require "BaseDatos/baseDatos.php";
     $con = new baseDatos;
     $peliculas = $con->getPeliculas();
+    
     //print_r($peliculas);
     //exit();
 ?>
@@ -41,23 +42,6 @@
             <h1></h1>
         </div>
 
-        <!-- Botones DELETE y EDIT -->
-
-        <!-- <div class="row">
-            <div class="col-10"></div>
-            <div class="col-1">
-                <button class="btn btn-danger" type="button" id="btnDel">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-            </div>
-            
-            <div class="col-1">
-                <button class="btn btn-success" type="button" id="btnEdit">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </button>
-            </div>
-        </div> -->
-
         <div class="row">
             <h2>Catálogo: </h2><br><br><br>
         </div>
@@ -70,12 +54,10 @@
                     <th>Tipo</th>
                     <th>Género</th>
                     <th>Año</th>
-                    <th>Duración</th>
-                    <th>Episodios</th>
                     <th>Plataforma</th>
                     <th>Acciones</th>
                 </tr>
-                <!-- Fila con botones de acción -->
+                <!-- Mostrar los elementos de la base de datos en la vista -->
                 <?php
                     foreach ($peliculas as $index => $pelicula):                    
                 ?>
@@ -86,8 +68,6 @@
                     <th><?=$pelicula->tipo?></th>
                     <th><?=$pelicula->genero?></th>
                     <th><?=$pelicula->anio?></th>
-                    <th><?=$pelicula->duracion?></th>
-                    <th><?=$pelicula->episodios?></th>
                     <th><?=$pelicula->plataforma?></th>
                     <th>
                         <button class="btn btn-danger" type="button" id="btnDel" onclick="deletePeliculas(<?=$pelicula->id?>)">
@@ -124,56 +104,31 @@
                         </div>
                         <br>
                         <!-- Tipo -->
-                        <form>
-                            <div class="form-group">
-                                <label for="idTipo">Formato:</label>
-                                <input type="text" class="form-control" id="idTipo" placeholder="Serie, Película o Novela">
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <label for="idTipo">Formato:</label>
+                            <input type="text" class="form-control" id="idTipo" placeholder="Serie, Película o Novela">
+                        </div>
                         <br>
                        <!-- Género -->
-                        <form>
-                            <div class="form-group">
-                                <label for="idGenero">Género:</label>
-                                <input type="text" class="form-control" id="idGenero" placeholder="Drama, Acción, Ficción, Ciencia Ficción...">
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <label for="idGenero">Género:</label>
+                            <input type="text" class="form-control" id="idGenero" placeholder="Drama, Acción, Ficción, Ciencia Ficción...">
+                        </div>
                         <br>
                         <!-- Año -->
-                        <form>
                             <div class="form-group">
                                 <label for="idYear">Año:</label>
                                 <input type="number" class="form-control" id="idYear" placeholder="Año en el que se estrenó">
                             </div>
-                        </form>
-                        <br>
-                        <!-- Duración -->
-                        <form>
-                            <div class="form-group">
-                                <label for="idDuracion">Duración:</label>
-                                <input type="number" class="form-control" id="idDuracion" placeholder="Duración">
-                            </div>
-                        </form>
-                        <br>
-                        <!-- Episodios -->
-                        <form>
-                            <div class="form-group">
-                                <label for="idEpisodios">Duración:</label>
-                                <input type="number" class="form-control" id="idEpisodios" placeholder="Número de Episodios">
-                            </div>
-                        </form>
                         <br>
                         <!-- Plataforma -->
-                        <form>
                             <div class="form-group">
                                 <label for="idPlataforma">Plataforma:</label>
                                 <input type="text" class="form-control" id="idPlataforma" placeholder="Netflix, Disney+, Prime Video...">
                             </div>
-                        </form>
                         <br>
 
-
-                        <button type="submit" class="btn btn-primary" id="btnSend">Enviar</button>
+                        <button type="button" class="btn btn-primary" id="btnSend" onclick='addPeliculas()'>Enviar</button>
                     </form>
                 </div>
                 <!-- Footer -->
