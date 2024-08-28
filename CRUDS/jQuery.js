@@ -1,5 +1,3 @@
-const { timers } = require("jquery");
-
 $(document).ready(function(){
 });
 //Crear una nueva película
@@ -41,17 +39,14 @@ $("#btnAdd").click(function () {
   $("#formulario-modal").modal("show");
 });
 
-//Editar elemento
-$("#btnEdit").click(function () {
-  $("#formulario-modal").modal("show");
-});
-
 $("#btnSend").click(function () {
   $("#formulario-modal").modal("hide");
 });
 
+/*************************************************
+ * FUNCIONES PARA ELIMINAR O EDITAR PELÍCULAS
+ *************************************************/
 function deletePeliculas(id) {
-
     Swal.fire({
         title: "¿Seguro que quieres eliminar la película?",
         showDenyButton: true,
@@ -68,9 +63,12 @@ function deletePeliculas(id) {
               id: id,
             },
             success: function (data) {
-                Swal.fire("El elemento se eliminó correctamente", "", "success");
-                timer:1000,
+              Swal.fire({
+                title: "El elemento se eliminó permanentemente",
+                icon: "success"
+              }).then((result) => {  
                 window.location.reload();
+              });
             },
             error: function () {
               alert("error");
@@ -82,3 +80,21 @@ function deletePeliculas(id) {
         }
       });
 }
+
+function editarPeliculas(id){
+  $("#formulario-modal").modal('show');
+  //Rellenar los campos correspondientes en el formulario de la modal
+  $.ajax({
+    type: 'post',
+    url: 'edit.php',
+    data: {
+      id: id
+    },
+    success: function(data){
+
+    }
+
+  })
+}
+
+

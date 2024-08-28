@@ -49,7 +49,7 @@
         <div class="row">
             <table class="table">
                 <tr>
-                    <th>id</th>
+                    <!-- <th>id</th> -->
                     <th>Título</th>
                     <th>Tipo</th>
                     <th>Género</th>
@@ -63,7 +63,7 @@
                 ?>
 
                 <tr>
-                    <th><?=$pelicula->id?></th>
+                    <!-- <th><?=$pelicula->id?></th> -->
                     <th><?=$pelicula->titulo?></th>
                     <th><?=$pelicula->tipo?></th>
                     <th><?=$pelicula->genero?></th>
@@ -73,7 +73,7 @@
                         <button class="btn btn-danger" type="button" id="btnDel" onclick="deletePeliculas(<?=$pelicula->id?>)">
                             <i class="fa-solid fa-trash"></i>
                         </button>
-                        <button class="btn btn-success" type="button" id="btnEdit">
+                        <button class="btn btn-success" type="button" id="btnEdit" onclick="editarPeliculas()">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                     </th>
