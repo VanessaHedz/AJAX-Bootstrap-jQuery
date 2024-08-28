@@ -2,9 +2,6 @@
     require "BaseDatos/baseDatos.php";
     $con = new baseDatos;
     $peliculas = $con->getPeliculas();
-    $flgEdit = false; //Bandera que indica si la película se está creando o editando
-    //print_r($peliculas);
-    //exit();
 ?>
 
 <!DOCTYPE html>
@@ -51,10 +48,10 @@
                 <tr>
                     <!-- <th>id</th> -->
                     <th>Título</th>
-                    <th>Tipo</th>
+                    <!-- <th>Tipo</th>
                     <th>Género</th>
                     <th>Año</th>
-                    <th>Plataforma</th>
+                    <th>Plataforma</th> -->
                     <th>Acciones</th>
                 </tr>
                 <!-- Mostrar los elementos de la base de datos en la vista -->
@@ -63,18 +60,21 @@
                 ?>
 
                 <tr>
-                    <!-- <th><?=$pelicula->id?></th> -->
+                    
                     <th><?=$pelicula->titulo?></th>
-                    <th><?=$pelicula->tipo?></th>
-                    <th><?=$pelicula->genero?></th>
-                    <th><?=$pelicula->anio?></th>
-                    <th><?=$pelicula->plataforma?></th>
+                    <!-- <th><//?=$pelicula->tipo?></th>
+                    <th><//?=$pelicula->genero?></th>
+                    <th><//?=$pelicula->anio?></th>
+                    <th><//?=$pelicula->plataforma?></th> -->
                     <th>
                         <button class="btn btn-danger" type="button" id="btnDel" onclick="deletePeliculas(<?=$pelicula->id?>)">
                             <i class="fa-solid fa-trash"></i>
                         </button>
-                        <button class="btn btn-success" type="button" id="btnEdit" onclick="verPeliculas(<?=$pelicula->id?>)">
+                        <button class="btn btn-success" type="button" id="btnEdit" onclick="editarPeliculas(<?=$pelicula->id?>)">
                             <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="btn btn-primary" type="button" id="btnVer" onclick="verPeliculas(<?=$pelicula->id?>)">
+                            <i class="fa-solid fa-eye"></i>
                         </button>
                     </th>
                 </tr>
@@ -100,7 +100,7 @@
                         <!-- Título -->
                         <div class="form-group">
                             <label for="idTitle">Título:</label>
-                            <input type="text" class="form-control" id="idTitle" placeholder="Título de la película o serie">
+                            <input type="text" class="form-control" id="idTitle" placeholder="Título de la película o serie">                        
                         </div>
                         <br>
                         <!-- Tipo -->
