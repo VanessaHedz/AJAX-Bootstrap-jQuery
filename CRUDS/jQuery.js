@@ -1,4 +1,5 @@
-$(document).ready(function () {});
+$(document).ready(function(){
+});
 //Crear una nueva película
 function addPeliculas(data) {
   //alert("Entra a la función");
@@ -28,7 +29,10 @@ function addPeliculas(data) {
       }
   });
 }
-//addPeliculas(1);
+//Cerrar formulario
+$("#btnClose").click(function () {
+    $("#formulario-modal").modal("hide");
+});
 
 //Agregar nuevo elemento
 $("#btnAdd").click(function () {
@@ -38,12 +42,6 @@ $("#btnAdd").click(function () {
 //Editar elemento
 $("#btnEdit").click(function () {
   $("#formulario-modal").modal("show");
-});
-
-//Cerrar Modal
-$("#btnClose").click(function () {
-    
-    $("#formulario-modal").modal("hide");
 });
 
 $("#btnSend").click(function () {

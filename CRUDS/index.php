@@ -96,7 +96,7 @@
                 </div>
                 <!-- Cuerpo del modal -->
                 <div class="modal-body">
-                    <form>
+                    <form id="formulario">
                         <!-- Título -->
                         <div class="form-group">
                             <label for="idTitle">Título:</label>
@@ -129,12 +129,11 @@
                         <br>
 
                         <button type="button" class="btn btn-primary" id="btnSend" onclick='addPeliculas()'>Enviar</button>
+                        <button type="button" class="btn btn-secondary" onclick="this.form.reset();" id="btnClose">No Enviar</button>
                     </form>
                 </div>
                 <!-- Footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">No Enviar</button>
-                </div>
+                    <!-- No hay footer -->
             </div>
         </div>
     </div>
