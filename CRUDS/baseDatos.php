@@ -31,7 +31,6 @@
             try{
                 $conn = $this->con->conectar();
                 $query= "SELECT * FROM catalogo WHERE id=".$id;
-                //var_dump($query);
                 $stmt = $conn->prepare($query);
                 $stmt->execute();
                 $pelicula = $stmt->fetch(PDO::FETCH_OBJ); //Recibe todos los datos de la película

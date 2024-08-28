@@ -1,6 +1,25 @@
 $(document).ready(function(){
 });
-//Crear una nueva película
+
+//Cerrar formulario
+$("#btnClose").click(function () {
+    $("#formulario-modal").modal("hide");
+});
+
+//Agregar nuevo elemento
+$("#btnAdd").click(function () {
+  $("#formulario-modal").modal("show");
+});
+
+$("#btnSend").click(function () {
+  $("#formulario-modal").modal("hide");
+});
+
+/*************************************************************
+ *  FUNCIONES PARA AGREGAR, ELIMINAR, VER Y EDITAR PELÍCULAS
+ *************************************************************/
+
+//---------------------------------------------------------- AGREGAR PELÍCULA
 function addPeliculas(data) {
   //alert("Entra a la función");
   $.ajax({
@@ -29,23 +48,8 @@ function addPeliculas(data) {
       }
   });
 }
-//Cerrar formulario
-$("#btnClose").click(function () {
-    $("#formulario-modal").modal("hide");
-});
 
-//Agregar nuevo elemento
-$("#btnAdd").click(function () {
-  $("#formulario-modal").modal("show");
-});
-
-$("#btnSend").click(function () {
-  $("#formulario-modal").modal("hide");
-});
-
-/*************************************************
- * FUNCIONES PARA ELIMINAR O EDITAR PELÍCULAS
- *************************************************/
+//---------------------------------------------------------- ELIMINAR PELÍCULA
 function deletePeliculas(id) {
     Swal.fire({
         title: "¿Seguro que quieres eliminar la película?",
@@ -81,6 +85,27 @@ function deletePeliculas(id) {
       });
 }
 
+//---------------------------------------------------------- VER PELÍCULA
+function verPeliculas(id){
+  $.ajax({
+    type: 'post',
+    url: 'ver.php',
+    dataType:'json',
+    data:{
+      id: id
+    },
+    success: function(data){
+      alert("Se seleccionó la película "+data.titulo);
+    },
+    error: function(){
+      alert("No se encontró el id");
+    }
+
+  });
+
+}
+
+//---------------------------------------------------------- EDITAR PELÍCULA
 function editarPeliculas(id){
   $("#formulario-modal").modal('show');
   //Rellenar los campos correspondientes en el formulario de la modal

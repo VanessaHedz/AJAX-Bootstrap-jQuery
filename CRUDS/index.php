@@ -2,7 +2,7 @@
     require "BaseDatos/baseDatos.php";
     $con = new baseDatos;
     $peliculas = $con->getPeliculas();
-    
+    $flgEdit = false; //Bandera que indica si la película se está creando o editando
     //print_r($peliculas);
     //exit();
 ?>
@@ -73,7 +73,7 @@
                         <button class="btn btn-danger" type="button" id="btnDel" onclick="deletePeliculas(<?=$pelicula->id?>)">
                             <i class="fa-solid fa-trash"></i>
                         </button>
-                        <button class="btn btn-success" type="button" id="btnEdit" onclick="editarPeliculas()">
+                        <button class="btn btn-success" type="button" id="btnEdit" onclick="verPeliculas(<?=$pelicula->id?>)">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                     </th>
@@ -88,7 +88,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="formulario-modal" tabindex="-1" role="dialog" aria-labelledby="formulario" aria-hidden="true">
+    <div class="modal fade" id="formulario-modal" tabindex="-1" role="dialog" aria-labelledby="formulario" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
