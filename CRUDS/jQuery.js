@@ -2,6 +2,7 @@ $(document).ready(function () {});
 
 //Variables globales
 let flgVer = true;
+let flgEdit = false;
 
 //Cerrar formulario
 $("#btnClose").click(function () {
@@ -11,6 +12,8 @@ $("#btnClose").click(function () {
 //Agregar nuevo elemento
 $("#btnAdd").click(function () {
   $("#formulario-modal").modal("show");
+  flgEdit = false; //Cuando se presiona el botón de +, es para CREAR una película.
+  console.log(flgEdit);
 });
 
 $("#btnSend").click(function () {
@@ -118,6 +121,10 @@ function verPeliculas(id) {
 function editarPeliculas(id) {
   $("#formulario-modal").modal("show");
   flgVer=false;
+  flgEdit=true; //Cuando se presiona el botón de editar, es para EDITAR una película.
+
+  console.log(flgEdit);
+
   verPeliculas(id,false);
   //Rellenar los campos correspondientes en el formulario de la modal
   $.ajax({
