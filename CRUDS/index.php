@@ -59,8 +59,7 @@
                     foreach ($peliculas as $index => $pelicula):                    
                 ?>
 
-                <tr>
-                    
+                <tr>                    
                     <th><?=$pelicula->titulo?></th>
                     <!-- <th><//?=$pelicula->tipo?></th>
                     <th><//?=$pelicula->genero?></th>
@@ -73,7 +72,7 @@
                         <button class="btn btn-success" type="button" id="btnEdit" onclick="editarPeliculas(<?=$pelicula->id?>)">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
-                        <button class="btn btn-primary" type="button" id="btnVer" onclick="verPeliculas(<?=$pelicula->id?>)">
+                        <button class="btn btn-primary" type="button" id="btnVer" onclick="watchMovie(<?=$pelicula->id?>)">
                             <i class="fa-solid fa-eye"></i>
                         </button>
                     </th>
@@ -97,6 +96,9 @@
                 <!-- Cuerpo del modal -->
                 <div class="modal-body">
                     <form id="formulario">
+                        <!-- ID -->
+                            <input type="hidden" id="idId">                       
+                        <br>
                         <!-- Título -->
                         <div class="form-group">
                             <label for="idTitle">Título:</label>
@@ -128,8 +130,8 @@
                             </div>
                         <br>
 
-                        <button type="button" class="btn btn-primary" id="btnSend" onclick='addPeliculas()'>Enviar</button>
-                        <button type="button" class="btn btn-secondary" onclick="this.form.reset();" id="btnClose">No Enviar</button>
+                        <button type="button" class="btn btn-primary" id="btnSend" onclick='AddEditPeliculas()'>Enviar</button>
+                        <button type="button" class="btn btn-secondary" onclick="this.form.reset();" id="btnClose">Cancelar</button>
                     </form>
                 </div>
                 <!-- Footer -->

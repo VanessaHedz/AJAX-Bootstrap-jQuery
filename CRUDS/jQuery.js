@@ -14,6 +14,8 @@ $("#btnAdd").click(function () {
   $("#formulario-modal").modal("show");
   flgEdit = false; //Cuando se presiona el botón de +, es para CREAR una película.
   console.log(flgEdit);
+  $("#btnSend").show();
+  $("#btnSend").text("Enviar");
 });
 
 $("#btnSend").click(function () {
@@ -24,33 +26,35 @@ $("#btnSend").click(function () {
  *  FUNCIONES PARA AGREGAR, ELIMINAR, VER Y EDITAR PELÍCULAS
  *************************************************************/
 
-//---------------------------------------------------------- AGREGAR PELÍCULA
-function addPeliculas(data) {
-  //alert("Entra a la función");
-  $.ajax({
-    type: "post",
-    url: "add.php",
-    dataType: "json",
-    data: {
-      titulo: $("#idTitle").val(),
-      tipo: $("#idTipo").val(),
-      genero: $("#idGenero").val(),
-      anio: $("#idYear").val(),
-      plataforma: $("#idPlataforma").val(),
-    },
-    success: function (data) {
-      if (data.success) {
-        alert(data.message);
-        window.location.reload();
-      } else {
-        alert(data.message);
-      }
-    },
-    error: function () {
-      alert("error en el JS");
-    },
-  });
-}
+//---------------------------------------------------------- AGREGAR Y EDITAR PELÍCULAS
+
+  function AddEditPeliculas(data) {
+    //alert("Entra a la función");
+    $.ajax({
+      type: "post",
+      url: flgEdit?'edit.php':'add.php',
+      dataType: "json",
+      data: {
+        id:$("#idId").val(),
+        titulo: $("#idTitle").val(),
+        tipo: $("#idTipo").val(),
+        genero: $("#idGenero").val(),
+        anio: $("#idYear").val(),
+        plataforma: $("#idPlataforma").val(),
+      },
+      success: function (data) {
+        if (data.success) {
+          alert(data.message);
+          window.location.reload();
+        } else {
+          alert(data.message);
+        }
+      },
+      error: function () {
+        alert("error en el JS AddEditPeliculas");
+      },
+    });
+  }
 
 //---------------------------------------------------------- ELIMINAR PELÍCULA
 function deletePeliculas(id) {
@@ -91,7 +95,7 @@ function deletePeliculas(id) {
 function verPeliculas(id) {
   $.ajax({
     type: "post",
-    url: "ver.php",
+    url: 'ver.php',
     dataType: "json",
     data: {
       id: id,
@@ -105,11 +109,11 @@ function verPeliculas(id) {
       $("#idYear").val(data.anio);
       $("#idPlataforma").val(data.plataforma);
 
-        $("#idTitle").attr("disabled",flgVer);
-        $("#idTipo").attr("disabled",flgVer);
-        $("#idGenero").attr("disabled",flgVer);
-        $("#idYear").attr("disabled",flgVer);
-        $("#idPlataforma").attr("disabled",flgVer);
+      $("#idTitle").attr("disabled", flgVer);
+      $("#idTipo").attr("disabled", flgVer);
+      $("#idGenero").attr("disabled", flgVer);
+      $("#idYear").attr("disabled", flgVer);
+      $("#idPlataforma").attr("disabled", flgVer);
     },
     error: function () {
       alert("No se encontró el id");
@@ -117,22 +121,25 @@ function verPeliculas(id) {
   });
 }
 
+function watchMovie(id){
+  $("#formulario-modal").modal("show");
+  flgVer = true;
+  verPeliculas(id);
+  $("#btnSend").hide();
+}
+
 //---------------------------------------------------------- EDITAR PELÍCULA
 function editarPeliculas(id) {
+  //Esta función recibe el id de la película seleccionada, búsca en la base de datos los elementos 
+  //de dicha película y los muestra en un formulario editable.
+  //Necesita de una función que reciba los elementos del formulario y los actualice en la base de 
+  //datos. 
   $("#formulario-modal").modal("show");
-  flgVer=false;
-  flgEdit=true; //Cuando se presiona el botón de editar, es para EDITAR una película.
-
+  flgVer = false;
+  flgEdit = true; //Cuando se presiona el botón de editar, es para EDITAR una película.
   console.log(flgEdit);
-
-  verPeliculas(id,false);
-  //Rellenar los campos correspondientes en el formulario de la modal
-  $.ajax({
-    type: "post",
-    url: "edit.php",
-    data: {
-      id: id,
-    },
-    success: function (data) {},
-  });
+  verPeliculas(id);
+  $("#btnSend").show();
+  $("#btnSend").text("Editar");
+  $("#idId").val(id);
 }
