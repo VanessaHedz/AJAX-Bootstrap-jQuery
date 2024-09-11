@@ -22,62 +22,42 @@ $("#btnJugar").click(function () {
       2: papel
       3: tijeras
     */
-   let msj = '';
+  let msj = "";
 
-   switch (rndm) {
+  switch (rndm) {
     case 1:
-        msj = 'Piedra';
+      msj = "Piedra";
       break;
     case 2:
-        msj = 'Papel';
+      msj = "Papel";
       break;
     case 3:
-        msj = 'Tijeras';
+      msj = "Tijeras";
       break;
   }
 
-  alert('Yo escogí '+msj);
+  msj = "Yo escogí " + msj + ".";
 
-
-  switch (jugador) {
-    case 1:
-      switch (rndm) {
-        case 1:
-          alert("Empate");
-          break;
-        case 2:
-          alert("Gana CPU");
-          break;
-        case 3:
-          alert("Gana jugador");
-          break;
-      }
-      break;
-    case 2:
-        switch (rndm) {
-            case 1:
-              alert("Gana jugador");
-              break;
-            case 2:
-              alert("Empate");
-              break;
-            case 3:
-              alert("Gana CPU");
-              break;
-          }
-      break;
-    case 3:
-        switch (rndm) {
-            case 1:
-              alert("Gana CPU");
-              break;
-            case 2:
-              alert("Gana jugador");
-              break;
-            case 3:
-              alert("Empate");
-              break;
-          }
-      break;
+  if (jugador == rndm) {
+    msj = msj + " ¡Es un empate!";
+  } else if (jugador == 1) {
+    if (rndm == 2) {
+      msj = msj + " ¡Yo gané!";
+    } else {
+      msj = msj + " ¡Ganaste!";
+    }
+  } else if (jugador == 2) {
+    if (rndm == 1) {
+      msj = msj + " ¡Ganaste!";
+    } else {
+      msj = msj + " ¡Yo gané!";
+    }
+  } else {
+    if (rndm == 1) {
+      msj = msj + " ¡Yo gané!";
+    } else {
+      msj = msj + " ¡Ganaste!";
+    }
   }
+  alert(msj);
 });
