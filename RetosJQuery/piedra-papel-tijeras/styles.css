@@ -1,3 +1,31 @@
 p {
     cursor: pointer;
 }
+
+.puntos {
+    background-color: #f0f0f0; /* Color de fondo */
+    border: 2px solid #ccc; /* Borde */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Relleno */
+    text-align: center; /* Alineación del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    width: 100px; /* Ancho */
+    margin: 10px auto; /* Margen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+  
+  .puntos.jugador {
+    background-color: #4CAF50; /* Color de fondo para el jugador */
+    color: white; /* Color del texto */
+  }
+  
+  .puntos.cpu {
+    background-color: #f44336; /* Color de fondo para la CPU */
+    color: white; /* Color del texto */
+  }
+
+.texto{
+    font-weight: bold;
+}
+  

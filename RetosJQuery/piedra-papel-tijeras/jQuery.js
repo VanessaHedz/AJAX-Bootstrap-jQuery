@@ -2,6 +2,11 @@ let jugador;
 let flgJugador = false;
 let flgSeleccion = false;
 let win = false;
+
+//Marcadores
+let player = 0;
+let CPU = 0;
+
 $("#btnOk").hide();
 
 $("#btnPiedra").on("click", function () {
@@ -59,27 +64,38 @@ $("#btnJugar").click(function () {
     } else if (jugador == 1) {
       if (rndm == 2) {
         msj = msj + " ¡Yo gané!";
+        CPU++;
       } else {
         msj = msj + " ¡Ganaste!";
+        player++;
         win = true;
       }
     } else if (jugador == 2) {
       if (rndm == 1) {
         msj = msj + " ¡Ganaste!";
+        player++;
         win = true;
       } else {
         msj = msj + " ¡Yo gané!";
+        CPU++;
       }
     } else {
       if (rndm == 1) {
         msj = msj + " ¡Yo gané!";
+        CPU++;
       } else {
         msj = msj + " ¡Ganaste!";
         win = true;
+        player++;
       }
     }
     // alert(msj);
     $("#divMensaje").append("<h1>" + msj + "</h1>");
+    console.log("Jugador: "+player);
+    console.log("CPU: "+CPU);
+
+    $("#MarcadorJugador").text(player);
+    $("#MarcadorCPU").text(CPU);
 
     if (win) {
       confetti();
