@@ -1,23 +1,43 @@
 let jugador;
 let flgJugador = false;
+let flgSeleccion = false;
+let win = false;
 $("#btnOk").hide();
 
-$("#btnPiedra").click(function () {
-  jugador = 1;
-  $("#divMensaje").append("<h1>Has seleccionado Piedra</h1>");
-  flgJugador = true;
+$("#btnPiedra").on("click", function () {
+  if(flgSeleccion){
+    alert("Ya seleccionaste una opción");
+  }
+  else{
+    jugador = 1;
+    $("#divMensaje").append("<h1>Has seleccionado Piedra</h1>");
+    flgJugador = true;
+    flgSeleccion = true;
+  }
 });
 
-$("#btnPapel").click(function () {
-  jugador = 2;
-  $("#divMensaje").append("<h1>Has seleccionado Papel</h1>");
-  flgJugador = true;
+$("#btnPapel").on("click", function () {
+  if(flgSeleccion){
+    alert("Ya seleccionaste una opción");
+  }
+  else{
+    jugador = 2;
+    $("#divMensaje").append("<h1>Has seleccionado Papel</h1>");
+    flgJugador = true;
+    flgSeleccion = true;
+  }
 });
 
-$("#btnTijeras").click(function () {
-  jugador = 3;
-  $("#divMensaje").append("<h1>Has seleccionado Tijeras</h1>");
-  flgJugador = true;
+$("#btnTijeras").on("click", function () {
+  if(flgSeleccion){
+    alert("Ya seleccionaste una opción");
+  }
+  else{
+    jugador = 3;
+    $("#divMensaje").append("<h1>Has seleccionado Tijeras</h1>");
+    flgJugador = true;
+    flgSeleccion = true;
+  }
 });
 
 $("#btnJugar").click(function () {
@@ -41,10 +61,12 @@ $("#btnJugar").click(function () {
         msj = msj + " ¡Yo gané!";
       } else {
         msj = msj + " ¡Ganaste!";
+        win = true;
       }
     } else if (jugador == 2) {
       if (rndm == 1) {
         msj = msj + " ¡Ganaste!";
+        win = true;
       } else {
         msj = msj + " ¡Yo gané!";
       }
@@ -53,16 +75,23 @@ $("#btnJugar").click(function () {
         msj = msj + " ¡Yo gané!";
       } else {
         msj = msj + " ¡Ganaste!";
+        win = true;
       }
     }
     // alert(msj);
     $("#divMensaje").append("<h1>" + msj + "</h1>");
+
+    if (win) {
+      confetti();
+    }
 
     $("#btnOk").click(function () {
       $("#btnJugar").show();
       $("#btnOk").hide();
       $("#divMensaje").empty();
       flgJugador = false;
+      flgSeleccion = false;
+      win = false;
     });
 
     setTimeout(function () {
@@ -70,6 +99,8 @@ $("#btnJugar").click(function () {
       $("#btnOk").hide();
       $("#divMensaje").empty();
       flgJugador = false;
+      flgSeleccion = false;
+      win = false;
     }, 5000);
   }
 });
