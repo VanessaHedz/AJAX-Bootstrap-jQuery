@@ -30,6 +30,14 @@ th, td {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para efecto de tarjeta */
 }
 
+.table--fichas{
+    table-layout: fixed;
+}
+
+.td--fichas{
+    width: 10px;
+}
+
 .boton{
     background-color:#045aa3;
     color: whitesmoke;
