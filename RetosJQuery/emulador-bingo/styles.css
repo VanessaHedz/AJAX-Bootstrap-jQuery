@@ -60,3 +60,11 @@ body{
     background-color: #9f0e1f;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
 }
+
+.marcador {
+    background-color: #f8f9fa; /* Color de fondo claro */
+    padding: 10px;
+    text-align: center; /* Centrar el texto */
+    font-size: 1.2em; /* Tamaño de fuente más grande */
+    color: #343a40; /* Color de texto oscuro */
+  }
